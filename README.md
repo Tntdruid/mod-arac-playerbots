@@ -1,7 +1,7 @@
 # ![logo](https://raw.githubusercontent.com/azerothcore/azerothcore.github.io/master/images/logo-github.png) AzerothCore
 ## ARAC Playerbots - All Races All Classes for mod-playerbots
 # ![ARAC icon](https://raw.githubusercontent.com/azerothcore/mod-arac/master/icon.png)
-- Latest build status with AzerothCore: [![Build Status](https://github.com/Tntdruid/mod-arac-playerbots/workflows/core-build/badge.svg?branch=master&event=push)](https://github.com/Tntdruid/mod-arac-playerbots)
+- Latest build status with AzerothCore and mod-playerbots: [![Build Status](https://github.com/Tntdruid/mod-arac-playerbots/workflows/core-build/badge.svg?branch=master&event=push)](https://github.com/Tntdruid/mod-arac-playerbots)
 
 A fork of [mod-arac](https://github.com/heyitsbench/mod-arac) for servers running [mod-playerbots](https://github.com/mod-playerbots/mod-playerbots). It works on servers without playerbots too.
 

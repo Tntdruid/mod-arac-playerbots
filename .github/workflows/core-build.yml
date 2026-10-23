@@ -8,6 +8,33 @@ on:
 
 jobs:
   build:
-    uses: azerothcore/reusable-workflows/.github/workflows/core_build_modules.yml@main
-    with:
-      module_repo: ${{ github.event.repository.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-26.04
+            compiler:
+              CC: clang-20
+              CXX: clang++-20
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }}-${{ matrix.compiler.CC }}
+    env:
+      AC_PLAYERBOTS_DATABASE_INFO: localhost;3306;root;root;acore_playerbots
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: 'mod-playerbots/azerothcore-wotlk'
+          ref: 'Playerbot'
+          submodules: 'recursive'
+      - uses: actions/checkout@v4
+        with:
+          repository: 'mod-playerbots/mod-playerbots'
+          ref: 'master'
+          path: 'modules/mod-playerbots'
+      - uses: actions/checkout@v4
+        with:
+          path: 'modules/${{ github.event.repository.name }}'
+      - uses: ./.github/actions/linux-build
+        with:
+          CC: ${{ matrix.compiler.CC }}
+          CXX: ${{ matrix.compiler.CXX }}
