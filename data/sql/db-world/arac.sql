@@ -7868,3 +7868,38 @@ INSERT INTO player_totem_model (TotemID, RaceID, ModelID) VALUES
 (2, 10, @BloodElfEarthTotem),
 (3, 10, @BloodElfWaterTotem),
 (4, 10, @BloodElfAirTotem);
+
+-- skilllineability_dbc
+-- Race-locked class spells follow the faction instead of the race.
+SET @AllianceRaces := 1101;
+SET @HordeRaces := 690;
+
+DELETE FROM `skilllineability_dbc` WHERE `ID` IN (7594, 12518, 13151, 14779, 14784, 14787, 14788, 14795, 15252, 15253, 18299, 18308, 18311, 18314, 20089, 20090, 20091, 20092);
+INSERT INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `ClassMask`, `ExcludeRace`, `ExcludeClass`, `MinSkillLineRank`, `SupercededBySpell`, `AcquireMethod`, `TrivialSkillLineRankHigh`, `TrivialSkillLineRankLow`, `CharacterPoints_1`, `CharacterPoints_2`) VALUES
+-- Shaman: Heroism (Alliance), Bloodlust (Horde)
+(14795, 373, 32182, @AllianceRaces, 64, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(13151, 373, 2825, @HordeRaces, 64, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+
+-- Paladin: Seal of Vengeance (Alliance)
+(14779, 184, 31801, @AllianceRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(14787, 184, 31803, @AllianceRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(14788, 184, 31804, @AllianceRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(18299, 184, 53726, @AllianceRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+
+-- Paladin: Seal of Corruption (Horde)
+(14784, 184, 31898, @HordeRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(18308, 184, 53733, @HordeRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(18311, 184, 53736, @HordeRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(18314, 184, 53742, @HordeRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+
+-- Paladin: Warhorse and Charger (Alliance)
+(7594, 594, 13819, @AllianceRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(12518, 594, 23214, @AllianceRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(20091, 777, 13819, @AllianceRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(20089, 777, 23214, @AllianceRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+
+-- Paladin: Thalassian Warhorse and Charger (Horde)
+(15253, 594, 34769, @HordeRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(15252, 594, 34767, @HordeRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(20092, 777, 34769, @HordeRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(20090, 777, 34767, @HordeRaces, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0);
